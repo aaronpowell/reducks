@@ -1,10 +1,10 @@
-import { expect } from 'chai';
 import { setVisibility } from '../examples/actions';
+import { expect } from 'chai';
 import creator from '../examples/stores';
 
-describe('store', () => {
-    it('should change visibility when SET_VISIBILITY_FILTER action fired', (done) => {
-        const store = creator();
+export default {
+    'should change visibility when SET_VISIBILITY_FILTER action fired': (createStore) => (done) => {
+        const store = creator(createStore);
 
         const initialState = store.getState();
 
@@ -16,5 +16,5 @@ describe('store', () => {
         });
 
         store.dispatch(setVisibility(!initialState.visibilityFilter));
-    });
-});
+    }
+};
