@@ -1,4 +1,4 @@
-import { ADD_TODO, SET_VISIBILITY_FILTER } from './types';
+import { ADD_TODO, TOGGLE_VISIBILITY_FILTER, UPDATE_TODO_STATUS, UPDATE_ALL } from './types';
 
 export var addTodo = (todo) => {
     return {
@@ -7,9 +7,25 @@ export var addTodo = (todo) => {
     };
 };
 
-export var setVisibility = (visibility) => {
+export var setVisibility = () => {
     return {
-        type: SET_VISIBILITY_FILTER,
-        payload: visibility
+        type: TOGGLE_VISIBILITY_FILTER
+    };
+};
+
+export var setTodoStatus = (todo, status) => {
+    return {
+        type: UPDATE_TODO_STATUS,
+        payload: {
+            todo,
+            status
+        }
+    };
+};
+
+export var updateAll = (newState) => {
+    return {
+        type: UPDATE_ALL,
+        payload: newState
     };
 };
