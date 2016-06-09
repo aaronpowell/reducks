@@ -17,5 +17,26 @@ export default {
 
         newState = store.getState();
         expect(newState.todos).to.be.length(1);
+    },
+
+    'should update only one todo': (createStore) => () => {
+        const store = creator(createStore);
+        const todo = 'this is a test todo';
+
+        store.dispatch(addTodo('first'));
+        store.dispatch(addTodo(todo));
+        store.dispatch(addTodo('last'));
+
+        let state = store.getState();
+
+        let todoToComplete = state.todos.filter(t => t.name === todo)[0];
+
+        store.dispatch(setTodoStatus(todoToComplete, true));
+
+        let nextState = store.getState();
+
+        expect(nextState.todos).to.be.length(3);
+        expect(nextState.todos.filter(t => t.completed)).to.be.length(1);
+        expect(nextState.todos.filter(t => !t.completed)).to.be.length(2);
     }
 };
