@@ -38,7 +38,7 @@ export default (state = initialState, action) => {
                 completed: action.payload.status
             };
 
-            var todos = state.todos.splice(0, todoIndex).concat([newTodo]).concat(state.todos.splice(todoIndex));
+            var todos = state.todos.splice(0, todoIndex).concat([newTodo]).concat(state.todos.splice(todoIndex + 1));
 
             return {
                 ...state,

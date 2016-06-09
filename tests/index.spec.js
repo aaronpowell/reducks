@@ -1,5 +1,6 @@
 import visibilityFilterTests from './visibilityFilterTests';
 import addTodoTests from './addTodoTests';
+import toggleTodoStatusTests from './toggleTodoStatusTests';
 import * as redux from 'redux';
 
 describe('set visibility filter', () => {
@@ -11,5 +12,11 @@ describe('set visibility filter', () => {
 describe('adding todos', () => {
     describe('redux', () =>
         Object.keys(addTodoTests).map(key => it(key, addTodoTests[key](redux.createStore)))
+    );
+});
+
+describe('toggle todos', () => {
+    describe('redux', () =>
+        Object.keys(toggleTodoStatusTests).map(key => it(key, toggleTodoStatusTests[key](redux.createStore)))
     );
 });
