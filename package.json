@@ -6,7 +6,8 @@
   "scripts": {
     "test": "karma  start --single-run",
     "test:watch": "karma start",
-    "redux-demo": "babel-node ./examples/index.redux.js"
+    "redux-demo": "babel-node ./examples/index.redux.js",
+    "reducks-demo": "babel-node ./examples/index.reducks.js"
   },
   "keywords": [],
   "author": "",
