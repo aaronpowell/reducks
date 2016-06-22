@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_VISIBILITY_FILTER, UPDATE_TODO_STATUS, UPDATE_ALL } from './types';
+import { ADD_TODO, TOGGLE_VISIBILITY_FILTER, COMPLETE_TODO, INCOMPLETE_TODO, COMPLETE_ALL, INCOMPLETE_ALL } from './types';
 
 export var addTodo = (todo) => {
     return {
@@ -15,17 +15,23 @@ export var setVisibility = () => {
 
 export var setTodoStatus = (todo, status) => {
     return {
-        type: UPDATE_TODO_STATUS,
+        type: status ? COMPLETE_TODO : INCOMPLETE_TODO,
         payload: {
-            todo,
-            status
+            todo
         }
     };
 };
 
-export var updateAll = (newState) => {
+export var completeAll = (todos) => {
     return {
-        type: UPDATE_ALL,
-        payload: newState
+        type: COMPLETE_ALL,
+        payload: todos
+    };
+};
+
+export var incompleteAll = (todos) => {
+    return {
+        type: INCOMPLETE_ALL,
+        payload: todos
     };
 };

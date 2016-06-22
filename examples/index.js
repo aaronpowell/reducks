@@ -1,5 +1,5 @@
 import creator from './stores';
-import { addTodo, setVisibility, setTodoStatus, updateAll } from './actions';
+import { addTodo, setVisibility, setTodoStatus, completeAll, incompleteAll } from './actions';
 import inquirer from 'inquirer';
 
 export default function (createStore) {
@@ -9,7 +9,7 @@ export default function (createStore) {
     store.subscribe(() => {
         const state = store.getState();
 
-        prompter(state.visibilityFilter, ...state.todos);
+        prompter(state.visibilityFilter, ...(state.visibilityFilter ? state.completedTodos : state.todos));
     });
 
     var ok = '✓';
@@ -25,7 +25,7 @@ export default function (createStore) {
             message: 'What to do next?',
             default: 'add',
             choices: [
-                ...tasks.filter(todo => todo.completed === visibilityFilter).map((task) => ({
+                ...tasks.map((task) => ({
                     name: `${task.name} [${ task.completed ? ok : ' ' }]`,
                     value: task
                 })),
@@ -67,11 +67,11 @@ export default function (createStore) {
                     return;
 
                 case 'todo-all':
-                    store.dispatch(updateAll(false));
+                    store.dispatch(incompleteAll(store.getState().completedTodos));
                     return;
 
                 case 'done-all':
-                    store.dispatch(updateAll(true));
+                    store.dispatch(completeAll(store.getState().todos));
                     return;
 
                 default:

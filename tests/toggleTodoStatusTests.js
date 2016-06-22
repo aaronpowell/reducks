@@ -16,7 +16,8 @@ export default {
         store.dispatch(setTodoStatus(addedTodo, true));
 
         newState = store.getState();
-        expect(newState.todos).to.be.length(1);
+        expect(newState.todos).to.be.length(0);
+        expect(newState.completedTodos).to.be.length(1);
     },
 
     'should update only one todo': (createStore) => () => {
@@ -35,8 +36,7 @@ export default {
 
         let nextState = store.getState();
 
-        expect(nextState.todos).to.be.length(3);
-        expect(nextState.todos.filter(t => t.completed)).to.be.length(1);
-        expect(nextState.todos.filter(t => !t.completed)).to.be.length(2);
+        expect(nextState.todos).to.be.length(2);
+        expect(nextState.completedTodos).to.be.length(1);
     }
 };
