@@ -1,3 +1,3 @@
 import todoApp from '../reducers';
 
-export default (createStore) => createStore(todoApp);
+export default (createStore, combineReducers) => createStore(todoApp(combineReducers));

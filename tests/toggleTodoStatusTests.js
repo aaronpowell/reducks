@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import creator from '../examples/stores';
 
 export default {
-    'should set status to complete': (createStore) => () => {
-        const store = creator(createStore);
+    'should set status to complete': (createStore, combineReducers) => () => {
+        const store = creator(createStore, combineReducers);
         const initialState = store.getState();
         const todo = 'this is a test todo';
 
@@ -20,8 +20,8 @@ export default {
         expect(newState.completedTodos).to.be.length(1);
     },
 
-    'should update only one todo': (createStore) => () => {
-        const store = creator(createStore);
+    'should update only one todo': (createStore, combineReducers) => () => {
+        const store = creator(createStore, combineReducers);
         const todo = 'this is a test todo';
 
         store.dispatch(addTodo('first'));

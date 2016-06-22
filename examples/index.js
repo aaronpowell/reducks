@@ -2,9 +2,9 @@ import creator from './stores';
 import { addTodo, setVisibility, setTodoStatus, completeAll, incompleteAll } from './actions';
 import inquirer from 'inquirer';
 
-export default function (createStore) {
+export default function (createStore, combineReducers) {
 
-    const store = creator(createStore);
+    const store = creator(createStore, combineReducers);
 
     store.subscribe(() => {
         const state = store.getState();

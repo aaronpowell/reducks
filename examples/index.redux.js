@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import app from './index';
 
-app(createStore);
+app(createStore, combineReducers);

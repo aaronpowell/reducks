@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import creator from '../examples/stores';
 
 export default {
-    'should add a todo that is provided':  (createStore) => (done) => {
-        const store = creator(createStore);
+    'should add a todo that is provided':  (createStore, combineReducers) => (done) => {
+        const store = creator(createStore, combineReducers);
         const initialState = store.getState();
         const todo = 'this is a test todo';
 
