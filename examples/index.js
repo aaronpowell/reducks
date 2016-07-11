@@ -1,6 +1,7 @@
 import creator from './stores';
 import { addTodo, setVisibility, setTodoStatus, completeAll, incompleteAll } from './actions';
 import inquirer from 'inquirer';
+import chalk from 'chalk';
 
 export default function (createStore, combineReducers) {
 
@@ -8,6 +9,10 @@ export default function (createStore, combineReducers) {
 
     store.subscribe(() => {
         const state = store.getState();
+
+        if (state.error) {
+            console.log(chalk.red(state.error));
+        }
 
         prompter(state.visibilityFilter, ...(state.visibilityFilter ? state.completedTodos : state.todos));
     });
@@ -53,7 +58,7 @@ export default function (createStore, combineReducers) {
             message: 'Todo:',
             when: ({ operation }) => operation === 'add'
         }]).then(({ operation, todo }) => {
-            if (todo) {
+            if (operation === 'add') {
                 store.dispatch(addTodo(todo));
                 return;
             }

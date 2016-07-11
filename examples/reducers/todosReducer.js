@@ -29,7 +29,6 @@ export default (state = initialState, action) => {
             return [];
 
         case INCOMPLETE_ALL:
-            console.log('todoreducer');
             var todos = action.payload.map(todo => ({ ...todo, completed: false }));
             return state.concat(...todos);
     }
