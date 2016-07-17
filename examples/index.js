@@ -3,9 +3,9 @@ import { addTodo, setVisibility, setTodoStatus, completeAll, incompleteAll } fro
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 
-export default function (createStore, combineReducers) {
+export default function (createStore, combineReducers, applyMiddleware) {
 
-    const store = creator(createStore, combineReducers);
+    const store = creator(createStore, combineReducers, applyMiddleware);
 
     store.subscribe(() => {
         const state = store.getState();

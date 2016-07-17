@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import creator from '../examples/stores';
 
 export default {
-    'should change visibility when SET_VISIBILITY_FILTER action fired': (createStore, combineReducers) => (done) => {
-        const store = creator(createStore, combineReducers);
+    'should change visibility when SET_VISIBILITY_FILTER action fired': (createStore, combineReducers, applyMiddleware) => (done) => {
+        const store = creator(createStore, combineReducers, applyMiddleware);
 
         const initialState = store.getState();
 

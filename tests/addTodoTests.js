@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import creator from '../examples/stores';
 
 export default {
-    'should add a todo that is provided': (createStore, combineReducers) => (done) => {
-        const store = creator(createStore, combineReducers);
+    'should add a todo that is provided': (createStore, combineReducers, applyMiddleware) => (done) => {
+        const store = creator(createStore, combineReducers, applyMiddleware);
         const initialState = store.getState();
         const todo = 'this is a test todo';
 
@@ -19,8 +19,8 @@ export default {
         store.dispatch(addTodo(todo));
     },
 
-    'should have an error if the todo name is blank': (createStore, combineReducers) => (done) => {
-        const store = creator(createStore, combineReducers);
+    'should have an error if the todo name is blank': (createStore, combineReducers, applyMiddleware) => (done) => {
+        const store = creator(createStore, combineReducers, applyMiddleware);
         const todo = '';
 
         store.getState();

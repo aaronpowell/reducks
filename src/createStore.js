@@ -1,9 +1,18 @@
 const INIT_ACTION = 'reducks/@@INIT';
 
-export default (reducer) => {
+export default function createStore (reducer, initialState, enhancer) {
+    if (typeof initialState === 'function' && typeof enhancer === 'undefined') {
+        enhancer = initialState;
+        initialState = undefined;
+    }
+
     let state;
     let currentSubscriptions = [];
     let nextSubscriptions = currentSubscriptions;
+
+    if (typeof enhancer !== 'undefined') {
+        return enhancer(createStore)(reducer, initialState);
+    }
 
     const ensureCanMutateNextListeners = function () {
         if (nextSubscriptions === currentSubscriptions) {
